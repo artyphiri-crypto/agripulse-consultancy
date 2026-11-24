@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgriPulse Advisory | Agribusiness Consultancy &amp; Market Intelligence</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            agriGreen: '#14532d',
+            agriLight: '#16a34a',
+            agriOrange: '#ea580c',
+            agriSand: '#f8fafc'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-agriSand text-slate-800 font-sans antialiased selection:bg-agriOrange/20 selection:text-agriGreen">
+
+  <!-- Modern Glassmorphic Navigation -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-3.5">
+      <a href="#home" class="flex items-center gap-2.5 font-extrabold text-xl tracking-tight text-agriGreen">
+        <span class="w-9 h-9 rounded-xl bg-agriGreen text-white flex items-center justify-center shadow-sm">
+          <i class="fa-solid fa-seedling text-agriOrange text-base"></i>
+        </span>
+        <span>AgriPulse<span class="text-agriOrange">.</span></span>
+      </a>
+
+      <nav class="hidden md:flex items-center space-x-7 text-sm font-semibold text-slate-600">
+        <a href="#services" class="hover:text-agriGreen transition-colors">Services</a>
+        <a href="#market" class="hover:text-agriGreen transition-colors">Market &amp; Forecasts</a>
+        <a href="#calculator" class="hover:text-agriGreen transition-colors">Profit Calculator</a>
+        <a href="#ai-advisor" class="hover:text-agriGreen transition-colors">AgriPulse AI</a>
+        <a href="#consult" class="hover:text-agriGreen transition-colors">Book Advisory</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#consult" class="bg-agriGreen hover:bg-green-900 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md">
+          Get Consultancy
+        </a>
+        <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-lg" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-1.5">
+      <a href="#services" class="block px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-700 font-semibold text-sm">Services</a>
+      <a href="#market" class="block px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-700 font-semibold text-sm">Market &amp; Forecasts</a>
+      <a href="#calculator" class="block px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-700 font-semibold text-sm">Profit Calculator</a>
+      <a href="#ai-advisor" class="block px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-700 font-semibold text-sm">AgriPulse AI</a>
+      <a href="#consult" class="block px-3 py-2 rounded-lg bg-orange-50 text-agriOrange font-bold text-sm">Book Advisory</a>
+    </div>
+  </header>
+
+  <!-- Hero Section with Sunrise Agribusiness Photo Background -->
+  <section id="home" class="relative bg-agriGreen text-white overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img
+        src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&amp;fit=crop&amp;w=1920&amp;q=80"
+        alt="Lush green agricultural crops at sunrise"
+        class="w-full h-full object-cover object-center scale-105"
+      />
+      <div class="absolute inset-0 bg-gradient-to-br from-green-950/95 via-agriGreen/85 to-emerald-950/85"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-green-100 text-xs font-semibold uppercase tracking-wider px-3.5 py-1.5 rounded-full">
+          <span class="w-2 h-2 rounded-full bg-agriOrange animate-pulse"></span>
+          <span>Data-Driven Agricultural Intelligence</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.12]">
+          Scaling Agribusiness Through Strategy &amp; <span class="text-agriOrange">Market Foresight.</span>
+        </h1>
+        <p class="text-green-100/90 text-lg max-w-2xl leading-relaxed font-normal">
+          Modern advisory across agribusiness management, commercial agro-marketing, enterprise development, supply chain logistics, and local-to-global commodity price forecasting.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a href="#calculator" class="bg-agriOrange hover:bg-orange-600 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-orange-950/30 transition-all hover:-translate-y-0.5 inline-flex items-center gap-2">
+            <i class="fa-solid fa-calculator"></i>
+            <span>Calculate Enterprise Margin</span>
+          </a>
+          <a href="#market" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white font-semibold px-6 py-3.5 rounded-xl transition-all inline-flex items-center gap-2">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>View Commodity Forecasts</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Modern Glass Market Snapshot Card -->
+      <div class="lg:col-span-5 bg-white/95 backdrop-blur-xl text-slate-800 rounded-3xl p-6 sm:p-7 shadow-2xl border border-white/50">
+        <div class="flex justify-between items-center border-b border-slate-200/80 pb-4 mb-4">
+          <div>
+            <h3 class="font-bold text-lg text-slate-900 tracking-tight">Weekly Market Pulse</h3>
+            <p class="text-xs text-slate-500 mt-0.5">Regional Wholesale Benchmarks &amp; 30-Day Outlook</p>
+          </div>
+          <span class="inline-flex items-center gap-1.5 bg-green-100 text-agriGreen text-[11px] font-extrabold px-3 py-1 rounded-full">
+            <span class="w-1.5 h-1.5 rounded-full bg-agriLight animate-ping"></span> LIVE INDEX
+          </span>
+        </div>
+        <div id="heroSnapshot" class="space-y-3"></div>
+        <a href="#market" class="mt-5 py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-orange-50 text-center text-sm font-bold text-agriOrange transition-colors flex items-center justify-center gap-2">
+          <span>Open Full Price &amp; Forecast Board</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consultancy Services Section -->
+  <section id="services" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-agriOrange font-bold text-xs uppercase tracking-widest">Advisory Pillars</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">Specialised Agribusiness Consultancy</h2>
+      <p class="mt-3 text-slate-600 text-base leading-relaxed">
+        Tailored technical and commercial advisory for commercial farms, cooperatives, agro-processors, and development programmes.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="group bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 bg-green-50 border border-green-100 text-agriGreen rounded-2xl flex items-center justify-center text-xl mb-5 group-hover:bg-agriGreen group-hover:text-white transition-colors">
+            <i class="fa-solid fa-tractor"></i>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 mb-2 tracking-tight">Agribusiness Management</h3>
+          <p class="text-sm text-slate-600 mb-5 leading-relaxed">
+            Enterprise budgeting, gross margin optimisation, feasibility studies, and resource allocation modelling.
+          </p>
+          <ul class="text-xs text-slate-600 space-y-2 mb-6">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-agriLight"></i>Enterprise Viability Audits</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-agriLight"></i>Production Cost Analysis</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-agriLight"></i>Cooperative Governance</li>
+          </ul>
+        </div>
+        <button onclick="selectService('Agribusiness Management')" class="w-full py-2.5 px-4 bg-slate-100 hover:bg-agriGreen hover:text-white text-slate-800 text-sm font-bold rounded-xl transition-colors">
+          Request Consultant
+        </button>
+      </div>
+
+      <div class="group bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 bg-orange-50 border border-orange-100 text-agriOrange rounded-2xl flex items-center justify-center text-xl mb-5 group-hover:bg-agriOrange group-hover:text-white transition-colors">
+            <i class="fa-solid fa-bullhorn"></i>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 mb-2 tracking-tight">Sales &amp; Agro-Marketing</h3>
+          <p class="text-sm text-slate-600 mb-5 leading-relaxed">
+            Route-to-market strategies, off-taker linkage, export readiness, and branding for value-added agricultural goods.
+          </p>
+          <ul class="text-xs text-slate-600 space-y-2 mb-6">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-agriOrange"></i>B2B Off-Taker Contracting</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-agriOrange"></i>Pricing &amp; Positioning Strategy</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-agriOrange"></i>Input Distribution Channels</li>
+          </ul>
+        </div>
+        <button onclick="selectService('Sales & Agro-Marketing')" class="w-full py-2.5 px-4 bg-slate-100 hover:bg-agriGreen hover:text-white text-slate-800 text-sm font-bold rounded-xl transition-colors">
+          Request Consultant
+        </button>
+      </div>
+
+      <div class="group bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 bg-green-50 border border-green-100 text-agriGreen rounded-2xl flex items-center justify-center text-xl mb-5 group-hover:bg-agriGreen group-hover:text-white transition-colors">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 mb-2 tracking-tight">Business Development</h3>
+          <p class="text-sm text-slate-600 mb-5 leading-relaxed">
+            Bankable business plans, grant proposal writing, investor pitch decks, and agricultural SME scaling frameworks.
+          </p>
+          <ul class="text-xs text-slate-600 space-y-2 mb-6">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-agriLight"></i>Bankable Business Plans</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-agriLight"></i>Agri-Finance &amp; Grant Readiness</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-agriLight"></i>Strategic Partnerships</li>
+          </ul>
+        </div>
+        <button onclick="selectService('Business Development')" class="w-full py-2.5 px-4 bg-slate-100 hover:bg-agriGreen hover:text-white text-slate-800 text-sm font-bold rounded-xl transition-colors">
+          Request Consultant
+        </button>
+      </div>
+
+      <div class="group bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 bg-orange-50 border border-orange-100 text-agriOrange rounded-2xl flex items-center justify-center text-xl mb-5 group-hover:bg-agriOrange group-hover:text-white transition-colors">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 mb-2 tracking-tight">Supply Chain &amp; Logistics</h3>
+          <p class="text-sm text-slate-600 mb-5 leading-relaxed">
+            Post-harvest loss reduction, cold-chain structuring, aggregation hub design, and inventory traceability systems.
+          </p>
+          <ul class="text-xs text-slate-600 space-y-2 mb-6">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-agriOrange"></i>Aggregation Centre Setup</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-agriOrange"></i>Post-Harvest Loss Audits</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-agriOrange"></i>Cold-Chain &amp; Warehousing</li>
+          </ul>
+        </div>
+        <button onclick="selectService('Supply Chain & Logistics')" class="w-full py-2.5 px-4 bg-slate-100 hover:bg-agriGreen hover:text-white text-slate-800 text-sm font-bold rounded-xl transition-colors">
+          Request Consultant
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Market Prices, International Benchmarks & Speculation Section -->
+  <section id="market" class="py-24 bg-white border-y border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+        <div>
+          <span class="text-agriOrange font-bold text-xs uppercase tracking-widest">Local + Global Market Intelligence</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">Agricultural Market Prices, Forecasts &amp; Speculation</h2>
+          <p class="text-slate-600 text-sm sm:text-base mt-2 max-w-2xl">
+            Compare domestic wholesale benchmarks with international market signals, weather/trade speculation, and 30-to-60 day price outlooks.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <div class="relative">
+            <i class="fa-solid fa-magnifying-glass text-slate-400 text-xs absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+            <input type="text" id="cropSearch" placeholder="Search crop or speculation..." class="border border-slate-300 rounded-xl pl-9 pr-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen w-60 bg-slate-50/60" />
+          </div>
+          <select id="categoryFilter" class="border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-slate-50/60 font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen">
+            <option value="All">All Categories</option>
+            <option value="Grains">Grains &amp; Cereals</option>
+            <option value="Legumes">Legumes &amp; Oilseeds</option>
+            <option value="Cash Crops">Cash &amp; Export Crops</option>
+            <option value="Horticulture">Horticulture</option>
+          </select>
+          <select id="volatilityFilter" class="border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-slate-50/60 font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen">
+            <option value="All">All Speculation Levels</option>
+            <option value="High">High Speculation / Volatility</option>
+            <option value="Moderate">Moderate Watch</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- International & Macro Speculation Drivers Strip -->
+      <div class="grid md:grid-cols-3 gap-5 mb-10">
+        <div class="bg-gradient-to-br from-slate-50 to-orange-50/40 border border-slate-200/90 rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-extrabold uppercase tracking-wide text-agriOrange flex items-center gap-1.5">
+              <i class="fa-solid fa-globe"></i> Global Supply &amp; Weather
+            </span>
+            <span class="text-[11px] font-bold bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full">Speculative Watch</span>
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Shift between La Ni&ntilde;a/El Ni&ntilde;o patterns, global stock-to-use ratios, and ocean freight/energy costs keeps international grain and oilseed traders actively repricing forward contracts.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-slate-50 to-green-50/40 border border-slate-200/90 rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-extrabold uppercase tracking-wide text-agriGreen flex items-center gap-1.5">
+              <i class="fa-solid fa-flask"></i> Input &amp; Fertiliser Pass-Through
+            </span>
+            <span class="text-[11px] font-bold bg-green-100 text-green-800 px-2.5 py-0.5 rounded-full">Cost Driver</span>
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Global nitrogen/phosphate fertiliser and fuel price swings feed directly into next-season planting budgets, prompting commercial buyers and stockists to hedge early.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-slate-50 to-slate-100/60 border border-slate-200/90 rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-extrabold uppercase tracking-wide text-slate-800 flex items-center gap-1.5">
+              <i class="fa-solid fa-arrows-left-right"></i> Regional &amp; FX Dynamics
+            </span>
+            <span class="text-[11px] font-bold bg-slate-200 text-slate-700 px-2.5 py-0.5 rounded-full">Local Arbitrage</span>
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Cross-border inflows from neighbouring markets, seasonal lean-period demand, and foreign exchange pressures create sharp local price spreads between surplus and deficit hubs.
+          </p>
+        </div>
+      </div>
+
+      <!-- Responsive Table -->
+      <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50/90 border-b border-slate-200 text-[11px] uppercase tracking-wider text-slate-500 font-bold">
+              <th class="py-4 px-5">Commodity</th>
+              <th class="py-4 px-5">Local Benchmark</th>
+              <th class="py-4 px-5">International Link</th>
+              <th class="py-4 px-5">7-Day Shift</th>
+              <th class="py-4 px-5">30-Day Forecast</th>
+              <th class="py-4 px-5">Speculation &amp; Action</th>
+            </tr>
+          </thead>
+          <tbody id="marketTableBody" class="divide-y divide-slate-200/80 text-sm"></tbody>
+        </table>
+      </div>
+
+      <p class="text-xs text-slate-400 mt-4">
+        * Click any commodity row to inspect bullish/bearish speculation drivers and strategic off-take timing. Benchmarks combine illustrative local wholesale indicators with international market themes.
+      </p>
+    </div>
+  </section>
+
+  <!-- Gross Margin & Break-Even Calculator -->
+  <section id="calculator" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+      <div>
+        <span class="text-agriGreen font-bold text-xs uppercase tracking-widest">Enterprise Budgeting Tool</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">Gross Margin &amp; Break-Even Calculator</h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-2">Test crop or enterprise economics before committing capital or signing off-take contracts.</p>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button type="button" onclick="loadPreset('maize')" class="px-3.5 py-2 text-xs font-bold rounded-xl bg-green-100/80 text-agriGreen hover:bg-green-200/80 transition">Preset: Maize (2 ha)</button>
+        <button type="button" onclick="loadPreset('soya')" class="px-3.5 py-2 text-xs font-bold rounded-xl bg-orange-100/80 text-agriOrange hover:bg-orange-200/80 transition">Preset: Soya Beans (3 ha)</button>
+        <button type="button" onclick="loadPreset('groundnuts')" class="px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-200/80 text-slate-700 hover:bg-slate-300/80 transition">Preset: Groundnuts (1.5 ha)</button>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 bg-white rounded-3xl p-6 sm:p-9 border border-slate-200/90 shadow-sm">
+      <!-- Inputs -->
+      <div class="lg:col-span-7 grid sm:grid-cols-2 gap-5">
+        <div class="sm:col-span-2">
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Enterprise / Crop Name</label>
+          <input type="text" id="calcCrop" value="White Maize" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Land Area (Hectares)</label>
+          <input type="number" id="calcArea" value="2" min="0.1" step="0.1" class="calc-input w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Expected Yield (kg / ha)</label>
+          <input type="number" id="calcYield" value="2800" min="1" step="50" class="calc-input w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Inputs &amp; Labour per ha (MWK)</label>
+          <input type="number" id="calcCostPerHa" value="950000" min="0" step="10000" class="calc-input w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Selling Price per kg (MWK)</label>
+          <input type="number" id="calcPricePerKg" value="850" min="1" step="10" class="calc-input w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen" />
+        </div>
+
+        <div class="sm:col-span-2">
+          <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Post-Harvest &amp; Transport Cost (MWK)</label>
+          <input type="number" id="calcLogistics" value="180000" min="0" step="10000" class="calc-input w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen" />
+        </div>
+
+        <div class="sm:col-span-2 pt-2">
+          <button type="button" onclick="calculateMargin()" class="w-full py-3 px-5 bg-agriOrange hover:bg-orange-600 text-white text-sm font-bold rounded-xl transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-2">
+            <i class="fa-solid fa-calculator"></i>
+            <span>Calculate Gross Margin</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Outputs -->
+      <div class="lg:col-span-5 bg-gradient-to-b from-slate-50 to-slate-100/80 rounded-2xl p-6 sm:p-7 border border-slate-200/90 flex flex-col justify-between">
+        <div class="space-y-4">
+          <h3 class="font-bold text-lg text-slate-900 border-b border-slate-200 pb-3.5 tracking-tight">Projected Enterprise Summary</h3>
+
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-600">Total Harvest Output:</span>
+            <span id="outTotalKg" class="font-bold text-slate-900">5,600 kg</span>
+          </div>
+
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-600">Gross Revenue:</span>
+            <span id="outRevenue" class="font-bold text-slate-900">MWK 4,760,000</span>
+          </div>
+
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-600">Total Variable &amp; Logistics Cost:</span>
+            <span id="outTotalCost" class="font-bold text-slate-900">MWK 2,080,000</span>
+          </div>
+
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-600">Break-Even Yield:</span>
+            <span id="outBreakEven" class="font-bold text-agriOrange">2,447 kg</span>
+          </div>
+
+          <div class="pt-4 border-t border-slate-200 flex justify-between items-baseline">
+            <span class="font-bold text-slate-800">Net Gross Margin:</span>
+            <span id="outMargin" class="text-2xl sm:text-3xl font-extrabold text-agriGreen tracking-tight">MWK 2,680,000</span>
+          </div>
+          <p id="outMarginRate" class="text-xs font-semibold text-slate-500 text-right">Gross Margin Ratio: 56.3%</p>
+        </div>
+
+        <button type="button" onclick="attachCalculationToConsult()" class="mt-6 w-full py-3 px-4 bg-agriGreen hover:bg-green-900 text-white text-sm font-bold rounded-xl transition-all shadow-sm">
+          Discuss These Numbers With an Advisor
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- AgriPulse AI Advisor Section -->
+  <section id="ai-advisor" class="py-24 bg-slate-900 text-white relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="inline-flex items-center gap-2 bg-agriOrange/20 border border-agriOrange/40 text-agriOrange text-xs font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full">
+          <i class="fa-solid fa-robot"></i> 24/7 Intelligent Agronomy &amp; Commercial Copilot
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3">Ask AgriPulse AI Advisor</h2>
+        <p class="text-slate-300 text-sm sm:text-base mt-2">
+          Get instant, structured guidance on enterprise gross margins, commodity timing, post-harvest storage, off-taker negotiations, and supply chain planning.
+        </p>
+      </div>
+
+      <div class="bg-slate-800/90 border border-slate-700 rounded-3xl shadow-2xl overflow-hidden grid lg:grid-cols-12">
+        <!-- Left Prompt Starters -->
+        <div class="lg:col-span-4 bg-slate-950/60 p-6 sm:p-7 border-b lg:border-b-0 lg:border-r border-slate-700/80 flex flex-col justify-between">
+          <div>
+            <h3 class="font-bold text-sm uppercase tracking-wider text-agriOrange mb-4">Quick Advisory Prompts</h3>
+            <div class="space-y-2.5">
+              <button type="button" onclick="askPresetAI('Should I hold or sell my White Maize and Soya Beans based on current forecasts?')" class="w-full text-left text-xs bg-slate-800/90 hover:bg-agriGreen/40 border border-slate-700 hover:border-agriLight p-3 rounded-xl transition leading-relaxed text-slate-200">
+                &ldquo;Should I hold or sell my White Maize and Soya Beans based on current forecasts?&rdquo;
+              </button>
+              <button type="button" onclick="askPresetAI('How do I structure an off-taker supply contract for Groundnuts (CG7) to avoid aflatoxin rejections?')" class="w-full text-left text-xs bg-slate-800/90 hover:bg-agriGreen/40 border border-slate-700 hover:border-agriLight p-3 rounded-xl transition leading-relaxed text-slate-200">
+                &ldquo;How do I structure an off-taker contract for Groundnuts (CG7) and prevent aflatoxin rejections?&rdquo;
+              </button>
+              <button type="button" onclick="askPresetAI('Give me a step-by-step checklist to make my agribusiness bankable for commercial financing or grants.')" class="w-full text-left text-xs bg-slate-800/90 hover:bg-agriGreen/40 border border-slate-700 hover:border-agriLight p-3 rounded-xl transition leading-relaxed text-slate-200">
+                &ldquo;Give me a checklist to make my agribusiness bankable for financing or grants.&rdquo;
+              </button>
+              <button type="button" onclick="askPresetAI('How can I reduce post-harvest losses in horticulture and grain aggregation?')" class="w-full text-left text-xs bg-slate-800/90 hover:bg-agriGreen/40 border border-slate-700 hover:border-agriLight p-3 rounded-xl transition leading-relaxed text-slate-200">
+                &ldquo;How can I reduce post-harvest losses in horticulture and grain aggregation?&rdquo;
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-slate-800 text-xs text-slate-400">
+            Need a custom on-site audit or bankable business plan? Escalate any AI chat directly to a human consultant.
+          </div>
+        </div>
+
+        <!-- Right Chat Interface -->
+        <div class="lg:col-span-8 flex flex-col h-[500px]">
+          <div id="aiChatMessages" class="flex-1 p-6 overflow-y-auto space-y-4 text-sm">
+            <div class="flex gap-3">
+              <div class="w-8 h-8 rounded-xl bg-agriGreen text-white flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fa-solid fa-seedling text-agriOrange text-xs"></i>
+              </div>
+              <div class="bg-slate-900/90 border border-slate-700 rounded-2xl rounded-tl-none p-4 text-slate-200 leading-relaxed max-w-xl">
+                <p class="font-bold text-white mb-1">Welcome to AgriPulse AI.</p>
+                <p>Ask me anything about <strong>agribusiness management, sales &amp; off-taker marketing, supply chain logistics, bankable business plans,</strong> or our <strong>live commodity forecasts</strong>.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat Input Bar -->
+          <form id="aiChatForm" class="p-4 bg-slate-950/70 border-t border-slate-700/80 flex gap-3">
+            <input
+              type="text"
+              id="aiUserInput"
+              required
+              placeholder="Ask about crop margins, off-take contracts, storage, or price trends..."
+              class="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-agriOrange"
+            />
+            <button type="submit" id="aiSendBtn" class="bg-agriOrange hover:bg-orange-600 text-white font-bold px-5 py-3 rounded-xl transition flex items-center gap-2 shrink-0">
+              <span>Ask AI</span>
+              <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consultation Booking Section -->
+  <section id="consult" class="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white rounded-3xl shadow-xl border border-slate-200/90 overflow-hidden grid md:grid-cols-5">
+      <div class="md:col-span-2 bg-agriGreen text-white p-8 sm:p-9 flex flex-col justify-between">
+        <div>
+          <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-agriOrange mb-2">Direct Advisory Desk</span>
+          <h3 class="text-2xl font-extrabold tracking-tight mb-3">Book an Advisory Session</h3>
+          <p class="text-green-100/90 text-sm leading-relaxed mb-8">
+            Need a tailored feasibility study, supply chain audit, off-taker strategy, or bespoke commodity price forecast? Submit your brief via email or WhatsApp and we will respond within 24 hours.
+          </p>
+          <div class="space-y-4 text-sm">
+            <div class="flex items-center gap-3.5">
+              <span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-agriOrange">
+                <i class="fa-solid fa-location-dot"></i>
+              </span>
+              <span>Lilongwe &amp; Blantyre, Malawi</span>
+            </div>
+            <div class="flex items-center gap-3.5">
+              <span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-agriOrange">
+                <i class="fa-solid fa-envelope"></i>
+              </span>
+              <span>artyphiri@gmail.com</span>
+            </div>
+            <div class="flex items-center gap-3.5">
+              <span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-agriOrange">
+                <i class="fa-brands fa-whatsapp"></i>
+              </span>
+              <span>+265 998 717 254</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 pt-6 border-t border-green-700/80 text-xs text-green-200/90 leading-relaxed">
+          Available for field assessments, enterprise audits, and remote data consultations.
+        </div>
+      </div>
+
+      <div class="md:col-span-3 p-8 sm:p-9">
+        <form id="consultForm" class="space-y-4">
+          <input type="hidden" name="access_key" value="PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE" />
+          <input type="hidden" name="subject" value="New Agribusiness Consultancy Request - AgriPulse" />
+          <input type="hidden" name="from_name" value="AgriPulse Advisory Website" />
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Full Name</label>
+              <input type="text" id="clientName" name="name" required placeholder="e.g. Chikumbutso Banda" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Organisation / Farm</label>
+              <input type="text" id="clientOrg" name="organisation" placeholder="e.g. GreenValley Farms" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen" />
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Email or Phone</label>
+              <input type="text" id="clientContact" name="contact" required placeholder="+265..." class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Consultancy Area</label>
+              <select id="serviceSelect" name="service" class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen">
+                <option value="Agribusiness Management">Agribusiness Management</option>
+                <option value="Sales & Agro-Marketing">Sales &amp; Agro-Marketing</option>
+                <option value="Business Development">Business Development</option>
+                <option value="Supply Chain & Logistics">Supply Chain &amp; Logistics</option>
+                <option value="Custom Market Price Forecast">Custom Market Price Forecast</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Project Brief / Inquiry Details</label>
+            <textarea id="clientBrief" name="message" rows="4" required placeholder="Describe your crop/value chain, scale of operation, and objectives..." class="w-full border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-agriGreen/20 focus:border-agriGreen"></textarea>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-3 pt-2">
+            <button type="submit" id="submitBtn" class="w-full bg-agriOrange hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-2">
+              <i class="fa-solid fa-envelope"></i>
+              <span>Send via Email</span>
+            </button>
+            <button type="button" onclick="sendViaWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-2">
+              <i class="fa-brands fa-whatsapp text-base"></i>
+              <span>Send via WhatsApp</span>
+            </button>
+          </div>
+
+          <p id="formFeedback" class="hidden text-sm font-semibold text-center pt-2"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 text-slate-400 py-12 text-sm border-t border-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2.5 font-extrabold text-white text-lg tracking-tight">
+        <span class="w-8 h-8 rounded-lg bg-agriGreen text-white flex items-center justify-center">
+          <i class="fa-solid fa-seedling text-agriOrange text-sm"></i>
+        </span>
+        <span>AgriPulse Advisory</span>
+      </div>
+      <p>&copy; 2026 AgriPulse Agribusiness Consultancy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/265998717254?text=Hello%20AgriPulse,%20I%20would%20like%20to%20inquire%20about%20agribusiness%20consultancy." target="_blank" aria-label="Chat on WhatsApp" class="fixed bottom-6 right-6 bg-green-600 hover:bg-green-700 text-white w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all z-50">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- Commodity Speculation & Forecast Modal -->
+  <div id="specModal" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative">
+      <button type="button" onclick="closeSpecModal()" aria-label="Close modal" class="absolute top-5 right-5 w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center text-lg transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div id="specModalContent"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

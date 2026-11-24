@@ -1,0 +1,229 @@
+const commodityData = [
+  {
+    name: "White Maize (Grade A)",
+    category: "Grains",
+    price: "MWK 850 / kg",
+    change: "+4.2%",
+    trend: "up",
+    forecast: "MWK 920 - 960 / kg",
+    outlook: "Bullish — Tightening regional stocks driving upward pressure ahead of lean season."
+  },
+  {
+    name: "Soya Beans (Non-GMO)",
+    category: "Legumes",
+    price: "MWK 1,450 / kg",
+    change: "+6.8%",
+    trend: "up",
+    forecast: "MWK 1,600 / kg",
+    outlook: "Strong Demand — Poultry feed processors and export buyers actively accumulating."
+  },
+  {
+    name: "Groundnuts (CG7 Shelled)",
+    category: "Legumes",
+    price: "MWK 2,100 / kg",
+    change: "-1.5%",
+    trend: "down",
+    forecast: "MWK 2,050 / kg",
+    outlook: "Stable/Soft — Temporary supply influx; hold graded stock for stronger off-take windows."
+  },
+  {
+    name: "Burley Tobacco (Leaf)",
+    category: "Cash Crops",
+    price: "USD 2.45 / kg",
+    change: "+2.1%",
+    trend: "up",
+    forecast: "USD 2.55 / kg",
+    outlook: "Firm — High-quality leaf commanding strong auction and contracted rates."
+  },
+  {
+    name: "Arabica Coffee (Washed)",
+    category: "Cash Crops",
+    price: "USD 4.10 / kg",
+    change: "+5.0%",
+    trend: "up",
+    forecast: "USD 4.35 / kg",
+    outlook: "Bullish — Global supply deficits supporting favourable specialty export margins."
+  },
+  {
+    name: "Irish Potatoes (Ware)",
+    category: "Horticulture",
+    price: "MWK 700 / kg",
+    change: "0.0%",
+    trend: "neutral",
+    forecast: "MWK 780 / kg",
+    outlook: "Moderate Rise — Urban hospitality demand rising; proper curing and storage recommended."
+  }
+];
+
+const presets = {
+  maize: { crop: "White Maize", area: 2, yieldPerHa: 2800, costPerHa: 950000, pricePerKg: 850, logistics: 180000 },
+  soya: { crop: "Soya Beans", area: 3, yieldPerHa: 1650, costPerHa: 880000, pricePerKg: 1450, logistics: 150000 },
+  groundnuts: { crop: "Groundnuts (CG7)", area: 1.5, yieldPerHa: 1400, costPerHa: 1100000, pricePerKg: 2100, logistics: 120000 }
+};
+
+// DOM Elements
+const marketTableBody = document.getElementById("marketTableBody");
+const heroSnapshot = document.getElementById("heroSnapshot");
+const cropSearch = document.getElementById("cropSearch");
+const categoryFilter = document.getElementById("categoryFilter");
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const consultForm = document.getElementById("consultForm");
+
+// Mobile Navigation Toggle
+mobileMenuBtn.addEventListener("click", () => {
+  mobileMenu.classList.toggle("hidden");
+});
+
+// Render Hero Snapshot
+function renderHeroSnapshot() {
+  heroSnapshot.innerHTML = commodityData.slice(0, 3).map(item => {
+    const badgeColor = item.trend === "up"
+      ? "text-green-700 bg-green-100"
+      : item.trend === "down"
+      ? "text-red-700 bg-red-100"
+      : "text-slate-700 bg-slate-100";
+
+    return `
+      <div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 border border-slate-100">
+        <div>
+          <p class="font-semibold text-sm text-slate-900">${item.name}</p>
+          <p class="text-xs text-slate-500">30d Target: <span class="font-medium text-slate-700">${item.forecast}</span></p>
+        </div>
+        <div class="text-right">
+          <p class="font-bold text-sm text-slate-900">${item.price}</p>
+          <span class="inline-block text-xs font-semibold px-2 py-0.5 rounded ${badgeColor}">${item.change}</span>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+// Render Market Table
+function renderMarketTable(data) {
+  if (data.length === 0) {
+    marketTableBody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-500">No matching commodities found.</td></tr>`;
+    return;
+  }
+
+  marketTableBody.innerHTML = data.map(item => {
+    const trendBadge = item.trend === "up"
+      ? `<span class="inline-flex items-center gap-1 text-green-700 bg-green-100 px-2.5 py-0.5 rounded-full text-xs font-semibold"><i class="fa-solid fa-arrow-trend-up"></i> ${item.change}</span>`
+      : item.trend === "down"
+      ? `<span class="inline-flex items-center gap-1 text-red-700 bg-red-100 px-2.5 py-0.5 rounded-full text-xs font-semibold"><i class="fa-solid fa-arrow-trend-down"></i> ${item.change}</span>`
+      : `<span class="inline-flex items-center gap-1 text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-full text-xs font-semibold"><i class="fa-solid fa-minus"></i> ${item.change}</span>`;
+
+    return `
+      <tr class="hover:bg-slate-50">
+        <td class="py-4 px-4 font-semibold text-slate-900">${item.name}</td>
+        <td class="py-4 px-4 text-slate-600">${item.category}</td>
+        <td class="py-4 px-4 font-bold text-slate-900">${item.price}</td>
+        <td class="py-4 px-4">${trendBadge}</td>
+        <td class="py-4 px-4 font-semibold text-agriGreen">${item.forecast}</td>
+        <td class="py-4 px-4 text-slate-600 max-w-xs">${item.outlook}</td>
+      </tr>
+    `;
+  }).join("");
+}
+
+// Filter Commodities
+function filterMarketData() {
+  const query = cropSearch.value.toLowerCase();
+  const category = categoryFilter.value;
+
+  const filtered = commodityData.filter(item => {
+    const matchesSearch = item.name.toLowerCase().includes(query) || item.outlook.toLowerCase().includes(query);
+    const matchesCategory = category === "All" || item.category === category;
+    return matchesSearch && matchesCategory;
+  });
+
+  renderMarketTable(filtered);
+}
+
+cropSearch.addEventListener("input", filterMarketData);
+categoryFilter.addEventListener("change", filterMarketData);
+
+// Gross Margin & Break-Even Calculator
+const formatMWK = (num) => "MWK " + Math.round(num).toLocaleString("en-GB");
+
+function calculateMargin() {
+  const area = Math.max(0, parseFloat(document.getElementById("calcArea").value) || 0);
+  const yieldPerHa = Math.max(0, parseFloat(document.getElementById("calcYield").value) || 0);
+  const costPerHa = Math.max(0, parseFloat(document.getElementById("calcCostPerHa").value) || 0);
+  const pricePerKg = Math.max(0, parseFloat(document.getElementById("calcPricePerKg").value) || 0);
+  const logistics = Math.max(0, parseFloat(document.getElementById("calcLogistics").value) || 0);
+
+  const totalKg = area * yieldPerHa;
+  const revenue = totalKg * pricePerKg;
+  const totalCost = (area * costPerHa) + logistics;
+  const margin = revenue - totalCost;
+  const marginRatio = revenue > 0 ? ((margin / revenue) * 100).toFixed(1) : "0.0";
+  const breakEvenKg = pricePerKg > 0 ? Math.ceil(totalCost / pricePerKg) : 0;
+
+  document.getElementById("outTotalKg").textContent = `${Math.round(totalKg).toLocaleString("en-GB")} kg`;
+  document.getElementById("outRevenue").textContent = formatMWK(revenue);
+  document.getElementById("outTotalCost").textContent = formatMWK(totalCost);
+  document.getElementById("outBreakEven").textContent = `${breakEvenKg.toLocaleString("en-GB")} kg`;
+
+  const marginEl = document.getElementById("outMargin");
+  marginEl.textContent = formatMWK(margin);
+  marginEl.className = margin >= 0
+    ? "text-2xl font-extrabold text-agriGreen"
+    : "text-2xl font-extrabold text-red-600";
+
+  document.getElementById("outMarginRate").textContent = `Gross Margin Ratio: ${marginRatio}%`;
+}
+
+document.querySelectorAll(".calc-input").forEach(input => {
+  input.addEventListener("input", calculateMargin);
+});
+
+function loadPreset(key) {
+  const p = presets[key];
+  if (!p) return;
+  document.getElementById("calcCrop").value = p.crop;
+  document.getElementById("calcArea").value = p.area;
+  document.getElementById("calcYield").value = p.yieldPerHa;
+  document.getElementById("calcCostPerHa").value = p.costPerHa;
+  document.getElementById("calcPricePerKg").value = p.pricePerKg;
+  document.getElementById("calcLogistics").value = p.logistics;
+  calculateMargin();
+}
+
+function attachCalculationToConsult() {
+  const crop = document.getElementById("calcCrop").value || "Crop Enterprise";
+  const area = document.getElementById("calcArea").value;
+  const revenue = document.getElementById("outRevenue").textContent;
+  const totalCost = document.getElementById("outTotalCost").textContent;
+  const margin = document.getElementById("outMargin").textContent;
+  const breakEven = document.getElementById("outBreakEven").textContent;
+
+  document.getElementById("serviceSelect").value = "Agribusiness Management";
+  document.getElementById("clientBrief").value =
+    `Enterprise review for ${crop} (${area} ha): Projected Revenue ${revenue}, Total Cost ${totalCost}, Net Gross Margin ${margin}, Break-Even Yield ${breakEven}. Looking for advisory on optimising margins and market timing.`;
+
+  document.getElementById("consult").scrollIntoView({ behavior: "smooth" });
+}
+
+// Auto-select Service & Scroll to Form
+function selectService(serviceName) {
+  document.getElementById("serviceSelect").value = serviceName;
+  document.getElementById("consult").scrollIntoView({ behavior: "smooth" });
+}
+
+// Form Submission Handler
+consultForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("clientName").value;
+  const service = document.getElementById("serviceSelect").value;
+  const feedback = document.getElementById("formFeedback");
+
+  feedback.textContent = `Thank you, ${name}. Your inquiry for ${service} has been recorded. We will follow up shortly.`;
+  feedback.classList.remove("hidden");
+  consultForm.reset();
+});
+
+// Initialize
+renderHeroSnapshot();
+renderMarketTable(commodityData);
+calculateMargin();
