@@ -106,6 +106,9 @@ const presets = {
   groundnuts: { crop: "Groundnuts (CG7)", area: 1.5, yieldPerHa: 1400, costPerHa: 1100000, pricePerKg: 2100, logistics: 120000 }
 };
 
+let marketSpecChartInstance = null;
+let currentChartMode = "shift";
+
 // ==========================================
 // 2. GLOBAL BUTTON HANDLERS (WINDOW-BOUND)
 // ==========================================
@@ -314,6 +317,27 @@ window.escalateAIToConsult = function (topic) {
   if (consultSection) consultSection.scrollIntoView({ behavior: "smooth" });
 };
 
+window.switchMarketChart = function (mode) {
+  currentChartMode = mode;
+  const btnShift = document.getElementById("btnChartShift");
+  const btnSpec = document.getElementById("btnChartSpec");
+  const chartTitle = document.getElementById("chartTitle");
+
+  if (btnShift && btnSpec) {
+    if (mode === "shift") {
+      btnShift.className = "px-3.5 py-2 text-xs font-bold rounded-xl bg-agriOrange text-white shadow-xs transition";
+      btnSpec.className = "px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition";
+      if (chartTitle) chartTitle.textContent = "7-Day Price Shift (%) & Market Momentum";
+    } else {
+      btnSpec.className = "px-3.5 py-2 text-xs font-bold rounded-xl bg-agriGreen text-white shadow-xs transition";
+      btnShift.className = "px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition";
+      if (chartTitle) chartTitle.textContent = "Speculation & Volatility Index (1–10 Scale)";
+    }
+  }
+
+  renderMarketSpecChart(commodityData);
+};
+
 // ==========================================
 // 3. RENDERING & EVENT INITIALIZATION
 // ==========================================
@@ -386,6 +410,60 @@ function renderMarketTable(data) {
   }).join("");
 }
 
+function renderMarketSpecChart(data) {
+  const canvas = document.getElementById("marketSpecChart");
+  if (!canvas || typeof Chart === "undefined") return;
+
+  const labels = data.map(item => item.name.split(" (")[0]);
+  const isShift = currentChartMode === "shift";
+
+  const values = isShift
+    ? data.map(item => parseFloat(String(item.change).replace("%", "")) || 0)
+    : data.map(item => (item.speculationLevel === "High" ? 8.5 : 5.2));
+
+  const barColors = values.map(v => {
+    if (!isShift) return v >= 7 ? "rgba(234, 88, 12, 0.85)" : "rgba(22, 163, 74, 0.85)";
+    if (v > 0) return "rgba(22, 163, 74, 0.85)";
+    if (v < 0) return "rgba(220, 38, 38, 0.85)";
+    return "rgba(100, 116, 139, 0.75)";
+  });
+
+  if (marketSpecChartInstance) {
+    marketSpecChartInstance.destroy();
+  }
+
+  marketSpecChartInstance = new Chart(canvas.getContext("2d"), {
+    type: "bar",
+    data: {
+      labels,
+      datasets: [{
+        label: isShift ? "7-Day Price Change (%)" : "Speculation & Volatility Score (out of 10)",
+        data: values,
+        backgroundColor: barColors,
+        borderRadius: 8,
+        maxBarThickness: 48
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        y: {
+          beginAtZero: !isShift,
+          suggestedMax: isShift ? undefined : 10,
+          grid: { color: "rgba(148, 163, 184, 0.2)" }
+        },
+        x: {
+          grid: { display: false }
+        }
+      }
+    }
+  });
+}
+
 function filterMarketData() {
   const query = (document.getElementById("cropSearch")?.value || "").toLowerCase();
   const category = document.getElementById("categoryFilter")?.value || "All";
@@ -400,6 +478,7 @@ function filterMarketData() {
   });
 
   renderMarketTable(filtered);
+  renderMarketSpecChart(filtered.length > 0 ? filtered : commodityData);
 }
 
 function generateLocalAgriResponse(question) {
@@ -463,19 +542,16 @@ function generateLocalAgriResponse(question) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Mobile menu
   const mobileMenuBtn = document.getElementById("mobileMenuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
   if (mobileMenuBtn && mobileMenu) {
     mobileMenuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
   }
 
-  // Market filters
   document.getElementById("cropSearch")?.addEventListener("input", filterMarketData);
   document.getElementById("categoryFilter")?.addEventListener("change", filterMarketData);
   document.getElementById("volatilityFilter")?.addEventListener("change", filterMarketData);
 
-  // Speculation modal backdrop close
   const specModal = document.getElementById("specModal");
   if (specModal) {
     specModal.addEventListener("click", (e) => {
@@ -483,12 +559,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Live calculator inputs
   document.querySelectorAll(".calc-input").forEach(input => {
     input.addEventListener("input", window.calculateMargin);
   });
 
-  // Consultation Email Form
   const consultForm = document.getElementById("consultForm");
   if (consultForm) {
     consultForm.addEventListener("submit", async (e) => {
@@ -536,7 +610,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // AgriPulse AI Chat Form
   const aiChatForm = document.getElementById("aiChatForm");
   if (aiChatForm) {
     aiChatForm.addEventListener("submit", async (e) => {
@@ -549,7 +622,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const question = aiUserInput.value.trim();
       if (!question) return;
 
-      // Append User Message
       const userBubble = document.createElement("div");
       userBubble.className = "flex justify-end";
       userBubble.innerHTML = `<div class="bg-agriGreen text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-md text-sm leading-relaxed shadow-sm">${question.replace(/</g, "&lt;")}</div>`;
@@ -607,8 +679,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Initial Renders
   renderHeroSnapshot();
   renderMarketTable(commodityData);
+  renderMarketSpecChart(commodityData);
   window.calculateMargin();
 });
