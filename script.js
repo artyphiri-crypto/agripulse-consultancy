@@ -1,7 +1,9 @@
 // ==========================================
-// 1. COMMODITY & SPECULATION DATA
+// 1. GOOGLE SHEETS CSV CONFIG & FALLBACK DATA
 // ==========================================
-const commodityData = [
+const GOOGLE_SHEETS_CSV_URL = ""; // Paste your published Google Sheets CSV URL here
+
+const fallbackCommodityData = [
   {
     id: "maize",
     name: "White Maize (Grade A)",
@@ -100,6 +102,8 @@ const commodityData = [
   }
 ];
 
+let commodityData = [...fallbackCommodityData];
+
 const presets = {
   maize: { crop: "White Maize", area: 2, yieldPerHa: 2800, costPerHa: 950000, pricePerKg: 850, logistics: 180000 },
   soya: { crop: "Soya Beans", area: 3, yieldPerHa: 1650, costPerHa: 880000, pricePerKg: 1450, logistics: 150000 },
@@ -110,7 +114,113 @@ let marketSpecChartInstance = null;
 let currentChartMode = "shift";
 
 // ==========================================
-// 2. GLOBAL BUTTON HANDLERS (WINDOW-BOUND)
+// 2. CSV PARSER & GOOGLE SHEETS LOADER
+// ==========================================
+function parseCSVLine(line) {
+  const result = [];
+  let current = "";
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    const next = line[i + 1];
+
+    if (char === '"' && inQuotes && next === '"') {
+      current += '"';
+      i++;
+    } else if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if (char === "," && !inQuotes) {
+      result.push(current.trim());
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+  result.push(current.trim());
+  return result;
+}
+
+function parseCommodityCSV(csvText) {
+  const lines = csvText
+    .split(/\r?\n/)
+    .map(l => l.trim())
+    .filter(Boolean);
+
+  if (lines.length < 2) return [];
+
+  const headers = parseCSVLine(lines[0]).map(h => h.replace(/^\uFEFF/, "").trim());
+  const rows = [];
+
+  for (let i = 1; i < lines.length; i++) {
+    const cols = parseCSVLine(lines[i]);
+    const record = {};
+    headers.forEach((header, idx) => {
+      record[header] = cols[idx] ?? "";
+    });
+
+    if (!record.name) continue;
+
+    const rawChange = record.change || "0.0%";
+    const formattedChange = rawChange.endsWith("%") ? rawChange : `${rawChange}%`;
+    const numericChange = parseFloat(formattedChange.replace("%", "")) || 0;
+    const derivedTrend = ["up", "down", "neutral"].includes((record.trend || "").toLowerCase())
+      ? record.trend.toLowerCase()
+      : numericChange > 0
+      ? "up"
+      : numericChange < 0
+      ? "down"
+      : "neutral";
+
+    rows.push({
+      id: (record.id || record.name).toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+      name: record.name,
+      category: record.category || "Grains",
+      localPrice: record.localPrice || "N/A",
+      localHub: record.localHub || "Regional Wholesale",
+      intlBenchmark: record.intlBenchmark || "Global & Regional Benchmarks",
+      intlSignal: record.intlSignal || "",
+      change: formattedChange,
+      trend: derivedTrend,
+      speculationLevel: record.speculationLevel === "High" ? "High" : "Moderate",
+      forecast: record.forecast || "N/A",
+      bullCase: record.bullCase || "",
+      bearCase: record.bearCase || "",
+      action: record.action || ""
+    });
+  }
+
+  return rows;
+}
+
+async function loadCommodityData() {
+  if (!GOOGLE_SHEETS_CSV_URL || !GOOGLE_SHEETS_CSV_URL.trim()) {
+    commodityData = [...fallbackCommodityData];
+    return;
+  }
+
+  try {
+    const separator = GOOGLE_SHEETS_CSV_URL.includes("?") ? "&" : "?";
+    const fetchUrl = `${GOOGLE_SHEETS_CSV_URL.trim()}${separator}_t=${Date.now()}`;
+    const response = await fetch(fetchUrl, { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    const csvText = await response.text();
+    const parsed = parseCommodityCSV(csvText);
+
+    if (parsed.length > 0) {
+      commodityData = parsed;
+    } else {
+      commodityData = [...fallbackCommodityData];
+    }
+  } catch (err) {
+    console.warn("Using fallback commodityData due to CSV fetch issue:", err);
+    commodityData = [...fallbackCommodityData];
+  }
+}
+
+// ==========================================
+// 3. GLOBAL BUTTON HANDLERS (WINDOW-BOUND)
 // ==========================================
 window.selectService = function (serviceName) {
   const select = document.getElementById("serviceSelect");
@@ -339,7 +449,7 @@ window.switchMarketChart = function (mode) {
 };
 
 // ==========================================
-// 3. RENDERING & EVENT INITIALIZATION
+// 4. RENDERING & EVENT INITIALIZATION
 // ==========================================
 function renderHeroSnapshot() {
   const heroSnapshot = document.getElementById("heroSnapshot");
@@ -485,13 +595,13 @@ function generateLocalAgriResponse(question) {
   const q = question.toLowerCase();
 
   if (q.includes("maize") || q.includes("soya") || q.includes("price") || q.includes("forecast") || q.includes("hold") || q.includes("sell")) {
-    const maize = commodityData.find(c => c.id === "maize");
-    const soya = commodityData.find(c => c.id === "soya");
+    const maize = commodityData.find(c => c.id === "maize") || fallbackCommodityData[0];
+    const soya = commodityData.find(c => c.id === "soya") || fallbackCommodityData[1];
     return `
       <p class="font-bold text-white mb-1.5">Commercial Market &amp; Timing Advisory:</p>
       <ul class="list-disc pl-4 space-y-1.5 text-slate-300">
-        <li><strong>White Maize (${maize.localPrice} &rarr; 30d Target ${maize.forecast}):</strong> ${maize.action}</li>
-        <li><strong>Soya Beans (${soya.localPrice} &rarr; 30d Target ${soya.forecast}):</strong> ${soya.action}</li>
+        <li><strong>${maize.name} (${maize.localPrice} &rarr; 30d Target ${maize.forecast}):</strong> ${maize.action}</li>
+        <li><strong>${soya.name} (${soya.localPrice} &rarr; 30d Target ${soya.forecast}):</strong> ${soya.action}</li>
         <li><strong>Risk Management Rule:</strong> Sell 40% to cover immediate working capital and stagger the remaining 60% into verified off-taker contracts.</li>
       </ul>
     `;
@@ -541,7 +651,7 @@ function generateLocalAgriResponse(question) {
   `;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const mobileMenuBtn = document.getElementById("mobileMenuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
   if (mobileMenuBtn && mobileMenu) {
@@ -569,6 +679,13 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const submitBtn = document.getElementById("submitBtn");
       const feedback = document.getElementById("formFeedback");
+
+      const contactVal = document.getElementById("clientContact")?.value.trim() || "";
+      const replyToField = document.getElementById("web3formsReplyTo");
+      if (replyToField) {
+        replyToField.value = contactVal.includes("@") ? contactVal : "";
+      }
+
       const formData = new FormData(consultForm);
 
       if (submitBtn) {
@@ -591,7 +708,7 @@ document.addEventListener("DOMContentLoaded", () => {
             feedback.className = "text-sm text-green-700 font-semibold text-center pt-2";
             consultForm.reset();
           } else {
-            feedback.textContent = "Email submission needs your Web3Forms Access Key in index.html, or use the WhatsApp button.";
+            feedback.textContent = result.message || "Email submission failed. Please verify your Web3Forms key or use the WhatsApp button.";
             feedback.className = "text-sm text-red-600 font-semibold text-center pt-2";
           }
         }
@@ -679,8 +796,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Render fallback first for instant paint, then sync Google Sheets CSV if configured
   renderHeroSnapshot();
   renderMarketTable(commodityData);
   renderMarketSpecChart(commodityData);
   window.calculateMargin();
+
+  await loadCommodityData();
+  renderHeroSnapshot();
+  filterMarketData();
 });
