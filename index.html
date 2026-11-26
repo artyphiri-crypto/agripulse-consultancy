@@ -46,8 +46,8 @@
         <a href="#market" class="hover:text-agriGreen transition-colors">Market &amp; Forecasts</a>
         <a href="#insights" class="hover:text-agriGreen transition-colors">Insights</a>
         <a href="#calculator" class="hover:text-agriGreen transition-colors">Profit Calculator</a>
+        <a href="#pricing" class="hover:text-agriGreen transition-colors">Packages &amp; Pricing</a>
         <a href="#ai-advisor" class="hover:text-agriGreen transition-colors">AgriPulse AI</a>
-        <a href="#consult" class="hover:text-agriGreen transition-colors">Book Advisory</a>
       </nav>
 
       <div class="flex items-center gap-3">
@@ -66,6 +66,7 @@
       <a href="#market" class="block px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-700 font-semibold text-sm">Market &amp; Forecasts</a>
       <a href="#insights" class="block px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-700 font-semibold text-sm">Insights</a>
       <a href="#calculator" class="block px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-700 font-semibold text-sm">Profit Calculator</a>
+      <a href="#pricing" class="block px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-700 font-semibold text-sm">Packages &amp; Pricing</a>
       <a href="#ai-advisor" class="block px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-700 font-semibold text-sm">AgriPulse AI</a>
       <a href="#consult" class="block px-3 py-2 rounded-lg bg-orange-50 text-agriOrange font-bold text-sm">Book Advisory</a>
     </div>
@@ -99,9 +100,9 @@
             <i class="fa-solid fa-calculator"></i>
             <span>Calculate Enterprise Margin</span>
           </a>
-          <a href="#market" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white font-semibold px-6 py-3.5 rounded-xl transition-all inline-flex items-center gap-2">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>View Commodity Forecasts</span>
+          <a href="#pricing" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white font-semibold px-6 py-3.5 rounded-xl transition-all inline-flex items-center gap-2">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>View Advisory Packages</span>
           </a>
         </div>
       </div>
@@ -519,6 +520,154 @@
 
         <button type="button" onclick="attachCalculationToConsult()" class="mt-6 w-full py-3 px-4 bg-agriGreen hover:bg-green-900 text-white text-sm font-bold rounded-xl transition-all shadow-sm">
           Discuss These Numbers With an Advisor
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commercial Advisory Packages & Market Intelligence Subscriptions -->
+  <section id="pricing" class="py-24 bg-white border-y border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-agriOrange font-bold text-xs uppercase tracking-widest">Transparent Commercial Packages</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">Advisory Packages &amp; Market Subscriptions</h2>
+        <p class="mt-3 text-slate-600 text-base leading-relaxed">
+          Fixed-scope technical deliverables and weekly market intelligence built for Malawian farmers, traders, cooperatives, and agro-enterprises.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        <!-- Tier 1: Weekly Market Brief -->
+        <div class="bg-slate-50/70 rounded-3xl p-6 border border-slate-200 flex flex-col justify-between hover:shadow-xl transition-all">
+          <div>
+            <span class="inline-block bg-orange-100 text-agriOrange text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+              Weekly Subscription
+            </span>
+            <h3 class="font-bold text-lg text-slate-900">Trader Market Brief</h3>
+            <p class="text-xs text-slate-500 mt-1">For grain/legume traders, agro-dealers &amp; commercial growers.</p>
+            <div class="my-5 pb-5 border-b border-slate-200">
+              <span class="text-3xl font-extrabold text-slate-900">MWK 15,000</span>
+              <span class="text-xs text-slate-500 font-semibold"> / month</span>
+            </div>
+            <ul class="text-xs text-slate-600 space-y-2.5 mb-6">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-agriLight mt-0.5"></i>Monday 7 AM WhatsApp &amp; PDF wholesale price sheet</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-agriLight mt-0.5"></i>14–30 day buy/hold/sell timing signals</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-agriLight mt-0.5"></i>Cross-border &amp; processor tender alerts</li>
+            </ul>
+          </div>
+          <div class="space-y-2">
+            <a href="https://wa.me/265998717254?text=Hello%20AgriPulse%2C%20I%20would%20like%20to%20subscribe%20to%20the%20Weekly%20Trader%20Market%20Brief%20(MWK%2015%2C000%2Fmonth)%20via%20Airtel%20Money%20%2F%20TNM%20Mpamba." target="_blank" class="w-full py-2.5 px-4 bg-green-600 hover:bg-green-700 text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>Subscribe via Mobile Money</span>
+            </a>
+            <button type="button" onclick="selectPackage('Weekly Trader Market Brief (MWK 15,000/month)', 'Custom Market Price Forecast')" class="w-full py-2 px-4 bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold rounded-xl transition">
+              Book via Form
+            </button>
+          </div>
+        </div>
+
+        <!-- Tier 2: Enterprise Margin & Budget Audit -->
+        <div class="bg-slate-50/70 rounded-3xl p-6 border border-slate-200 flex flex-col justify-between hover:shadow-xl transition-all">
+          <div>
+            <span class="inline-block bg-emerald-100 text-agriGreen text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+              Farm &amp; Co-op Audit
+            </span>
+            <h3 class="font-bold text-lg text-slate-900">Enterprise Margin Pack</h3>
+            <p class="text-xs text-slate-500 mt-1">For commercial farms (2–25 ha) &amp; farmer cooperatives.</p>
+            <div class="my-5 pb-5 border-b border-slate-200">
+              <span class="text-3xl font-extrabold text-slate-900">MWK 55,000</span>
+              <span class="text-xs text-slate-500 font-semibold"> / enterprise</span>
+            </div>
+            <ul class="text-xs text-slate-600 space-y-2.5 mb-6">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-agriLight mt-0.5"></i>Custom Excel enterprise budget &amp; sensitivity model</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-agriLight mt-0.5"></i>Input cost-per-kg &amp; break-even yield stress test</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-agriLight mt-0.5"></i>45-minute 1-on-1 advisory review call</li>
+            </ul>
+          </div>
+          <div class="space-y-2">
+            <button type="button" onclick="selectPackage('Enterprise Margin Pack (MWK 55,000)', 'Agribusiness Management')" class="w-full py-2.5 px-4 bg-agriGreen hover:bg-green-900 text-white text-xs font-bold rounded-xl transition">
+              Request Margin Pack
+            </button>
+            <a href="https://wa.me/265998717254?text=Hello%20AgriPulse%2C%20I%20would%20like%20to%20book%20the%20Enterprise%20Margin%20Pack%20(MWK%2055%2C000)." target="_blank" class="w-full py-2 px-4 bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5">
+              <i class="fa-brands fa-whatsapp text-green-600"></i>
+              <span>Chat on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tier 3: Off-Taker & Quality Readiness (Featured) -->
+        <div class="bg-agriGreen text-white rounded-3xl p-6 border-2 border-agriOrange shadow-xl flex flex-col justify-between relative">
+          <span class="absolute -top-3 right-5 bg-agriOrange text-white text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
+            Most Popular
+          </span>
+          <div>
+            <span class="inline-block bg-white/10 text-green-100 text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+              Commercial Off-Take
+            </span>
+            <h3 class="font-bold text-lg text-white">Off-Taker Readiness Pack</h3>
+            <p class="text-xs text-green-100/85 mt-1">For groundnut, soya &amp; maize aggregators supplying processors.</p>
+            <div class="my-5 pb-5 border-b border-green-700/80">
+              <span class="text-3xl font-extrabold text-white">MWK 120,000</span>
+              <span class="text-xs text-green-200 font-semibold"> / project</span>
+            </div>
+            <ul class="text-xs text-green-100 space-y-2.5 mb-6">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-agriOrange mt-0.5"></i>Drafted B2B off-taker supply contract template</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-agriOrange mt-0.5"></i>Moisture, grading &amp; aflatoxin control SOPs</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-agriOrange mt-0.5"></i>Aggregation hub costing &amp; buyer linkage support</li>
+            </ul>
+          </div>
+          <div class="space-y-2">
+            <button type="button" onclick="selectPackage('Off-Taker Readiness Pack (MWK 120,000)', 'Sales & Agro-Marketing')" class="w-full py-2.5 px-4 bg-agriOrange hover:bg-orange-600 text-white text-xs font-bold rounded-xl transition shadow-md">
+              Book Off-Taker Pack
+            </button>
+            <a href="https://wa.me/265998717254?text=Hello%20AgriPulse%2C%20I%20would%20like%20to%20book%20the%20Off-Taker%20Readiness%20Pack%20(MWK%20120%2C000)." target="_blank" class="w-full py-2 px-4 bg-white/10 hover:bg-white/20 text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>Discuss via WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tier 4: Bankable Business Plan & Grant Proposal -->
+        <div class="bg-slate-50/70 rounded-3xl p-6 border border-slate-200 flex flex-col justify-between hover:shadow-xl transition-all">
+          <div>
+            <span class="inline-block bg-sky-100 text-sky-800 text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+              Finance &amp; Grants
+            </span>
+            <h3 class="font-bold text-lg text-slate-900">Bankable Business Plan</h3>
+            <p class="text-xs text-slate-500 mt-1">For Agri-SMEs &amp; cooperatives applying for loans or matching grants.</p>
+            <div class="my-5 pb-5 border-b border-slate-200">
+              <span class="text-3xl font-extrabold text-slate-900">MWK 280,000+</span>
+              <span class="text-xs text-slate-500 font-semibold"> / plan</span>
+            </div>
+            <ul class="text-xs text-slate-600 space-y-2.5 mb-6">
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-600 mt-0.5"></i>Complete investor/bank narrative business plan</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-600 mt-0.5"></i>3-year P&amp;L, cash-flow &amp; loan repayment model</li>
+              <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-600 mt-0.5"></i>Grant compliance &amp; pitch deck formatting</li>
+            </ul>
+          </div>
+          <div class="space-y-2">
+            <button type="button" onclick="selectPackage('Bankable Business Plan & Financial Model (From MWK 280,000)', 'Business Development')" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition">
+              Request Proposal Quote
+            </button>
+            <a href="https://wa.me/265998717254?text=Hello%20AgriPulse%2C%20I%20would%20like%20a%20quote%20for%20a%20Bankable%20Business%20Plan%20%26%20Financial%20Model." target="_blank" class="w-full py-2 px-4 bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5">
+              <i class="fa-brands fa-whatsapp text-green-600"></i>
+              <span>Chat on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 bg-slate-50 border border-slate-200/90 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-xl bg-orange-100 text-agriOrange flex items-center justify-center text-base shrink-0">
+            <i class="fa-solid fa-handshake"></i>
+          </span>
+          <p>
+            <strong class="text-slate-900">B2B Off-Take Facilitation &amp; NGO Custom Portals:</strong> Looking to source bulk graded commodities (20+ MT) or deploy a white-label price &amp; margin tool for a cooperative? Ask for custom brokerage or institutional terms.
+          </p>
+        </div>
+        <button type="button" onclick="selectPackage('B2B Bulk Off-Take / Institutional Portal Inquiry', 'Supply Chain & Logistics')" class="shrink-0 px-4 py-2.5 bg-white hover:bg-slate-100 border border-slate-300 rounded-xl font-bold text-slate-800 transition">
+          Enquire for Institutions &rarr;
         </button>
       </div>
     </div>

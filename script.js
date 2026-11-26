@@ -229,6 +229,18 @@ window.selectService = function (serviceName) {
   if (consultSection) consultSection.scrollIntoView({ behavior: "smooth" });
 };
 
+window.selectPackage = function (packageName, serviceCategory) {
+  const select = document.getElementById("serviceSelect");
+  const clientBrief = document.getElementById("clientBrief");
+  const consultSection = document.getElementById("consult");
+
+  if (select && serviceCategory) select.value = serviceCategory;
+  if (clientBrief) {
+    clientBrief.value = `Booking enquiry for: ${packageName}.\n\nCrop / Value Chain & Scale: `;
+  }
+  if (consultSection) consultSection.scrollIntoView({ behavior: "smooth" });
+};
+
 window.openSpecModal = function (id) {
   const item = commodityData.find(c => c.id === id);
   const specModal = document.getElementById("specModal");
