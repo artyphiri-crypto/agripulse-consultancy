@@ -1,7 +1,7 @@
 // ==========================================
 // 1. GOOGLE SHEETS CSV CONFIG & FALLBACK DATA
 // ==========================================
-const GOOGLE_SHEETS_CSV_URL = ""; // Paste your published Google Sheets CSV URL here
+const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTwfO6YKuJRJTigUdd1RVOyWp-3Ry5K77UkYQQnJ0yWkB9Js1T5WXHS53ELcczD3Lwjc8vbEErzg9E9/pub?gid=0&single=true&output=csv";
 
 const fallbackCommodityData = [
   {
